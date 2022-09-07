@@ -37,6 +37,16 @@
     "pages": [{
       "path": "goods_detail/goods_detail"
 
+    }, {
+      "path": "goods_list/goods_list",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 100,
+        "backgroundColor": "#eee"
+
+      }
+
     }]
   }],
   "tabBar": {
@@ -70,7 +80,12 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "尚品优购",
     "navigationBarBackgroundColor": "#ea5455",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "usingComponents": {
+
+      "van-card": "/wxcomponents/vant/card/index"
+    },
+    "ignoreDevUnusedFiles": false
   },
   "uniIdRouter": {}
 }

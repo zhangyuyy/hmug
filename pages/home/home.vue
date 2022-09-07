@@ -31,12 +31,15 @@
         <view class="floor-img-box">
           <!-- 左侧大图片的盒子 -->
           <view class="left-img-box">
-            <image :style="{width:item.product_list[0].image_width + 'rpx'}" :src='item.product_list[0].image_src'
+            <image @click='goGoodsList(item.product_list[0].navigator_url)'
+              :style="{width:item.product_list[0].image_width + 'rpx'}" :src='item.product_list[0].image_src'
               class="left-img"></image>
           </view>
 
           <view class="right-img-box">
-            <view class="right-img-item" v-for="(item2,i) in item.product_list " :key='i' v-if='i !==0'>
+            <view @click='goGoodsList(item2.navigator_url)' class="right-img-item"
+              v-for="(item2,i) in item.product_list " :key='
+              i' v-if='i !==0'>
               <image class="image" :style="{width:item2.image_width + 'rpx'}" :src='item2.image_src'></image>
             </view>
           </view>
@@ -67,18 +70,18 @@
       // 轮播图
       async loadBanners() {
         const res = await getBanners()
-        this.banners = res.message
+        this.banners = res
       },
       // 导航分类
       async loadNavs() {
         const res = await getNavs()
-        this.navs = res.message
+        this.navs = res
       },
       // 楼层图片
       async loadFloors() {
         const res = await getFloors()
         console.log(res)
-        this.floors = res.message
+        this.floors = res
       },
       // 点击轮播图
       goGoodsDetail(id) {
@@ -94,6 +97,13 @@
             url: '/pages/cate/cate'
           })
         }
+      },
+      // 点击楼层图片
+      goGoodsList(url) {
+        console.log(url)
+        uni.navigateTo({
+          url: "/subpkg/goods_list/goods_list?" + url.split("?")[1]
+        })
       }
     },
     onLoad() {
